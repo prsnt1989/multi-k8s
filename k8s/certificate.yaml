@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: pmdevwork-com-tls
+spec:
+  secretName: pmdevwork-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: pmdevwork.com
+  dnsNames:
+    - pmdevwork.com
+    - www.pmdevwork.com
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - pmdevwork.com
+          - www.pmdevwork.com
